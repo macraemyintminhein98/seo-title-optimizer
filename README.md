@@ -1,15 +1,3 @@
 # SEO Title Optimizer
 
-Instantly generate SEO-friendly, clickable title suggestions for your content with AI. Simply enter a keyword and get 5-10 optimized titles.
-
-## Features:
-- Keyword-based title generation
-- AI-powered suggestions
-- Improve your SEO easily
-
-## Get Started:
-1. Input your target keyword.
-2. Click 'Generate Titles'.
-3. Choose your favorite title or generate more!
-
-Boost your content's visibility today!
+**Turn keywords into clicks.** This micro-SaaS helps small business owners, bloggers, and content creators generate compelling, SEO-friendly titles using AI. Input a keyword, get 5-10 optimized title suggestions instantly. Improve your search engine rankings and attract more visitors to your content with a simple one-time purchase.
