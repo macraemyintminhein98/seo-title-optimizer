@@ -1,1 +1,48 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>SEO Title Optimizer</title><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-gray-100 flex items-center justify-center min-h-screen"><div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md"><h1 class="text-3xl font-bold mb-6 text-center text-gray-800">SEO Title Optimizer</h1><p class="text-center text-gray-600 mb-6">Generate compelling SEO titles instantly!</p><input type="text" id="keywordInput" placeholder="Enter your keyword..." class="w-full p-3 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"><button id="generateButton" class="w-full bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Generate Titles</button><div id="results" class="mt-6 space-y-3 text-gray-700"></div><div class="mt-8 text-center"><button id="buyNowButton" class="bg-green-600 text-white p-3 rounded-md hover:bg-green-700">Buy Now - $9.99</button></div></div><script>document.getElementById('generateButton').addEventListener('click', async () => {    const keyword = document.getElementById('keywordInput').value;    const resultsDiv = document.getElementById('results');    resultsDiv.innerHTML = '<p>Generating...</p>';    // Placeholder for API call and LLM response    const mockTitles = ['Best ' + keyword + ' Tips', keyword + ': The Ultimate Guide', 'Unlock ' + keyword + ' Secrets', 'Mastering ' + keyword + ' in 5 Easy Steps', 'Boost Your ' + keyword + ' Game'];    setTimeout(() => {        resultsDiv.innerHTML = mockTitles.map(title => `<p class="p-2 bg-gray-50 rounded-md border border-gray-200">${title}</p>`).join('');    }, 1500);});document.getElementById('buyNowButton').addEventListener('click', () => {    alert('Redirecting to checkout for $9.99!');    // In a real app, this would redirect to Stripe Checkout});</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Title Optimizer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body { font-family: sans-serif; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .input-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        .button { background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; }
+        .button:hover { background-color: #45a049; }
+        .results { margin-top: 30px; }
+        .title-item { background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin-bottom: 10px; }
+        .price-button { background-color: #007bff; color: white; padding: 12px 20px; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 20px; }
+        .price-button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container bg-white shadow-lg rounded-lg mt-10 p-8">
+        <h1 class="text-4xl font-bold text-center mb-6">SEO Title Optimizer</h1>
+        <p class="text-center text-gray-600 mb-8">Generate catchy, SEO-friendly titles for your content instantly.</p>
+
+        <div class="input-group">
+            <label for="keyword">Enter your main keyword:</label>
+            <input type="text" id="keyword" placeholder="e.g., 'best coffee makers 2024'" class="focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <button id="generateButton" class="button w-full mb-8 hover:shadow-md transition-all duration-300">Generate Titles</button>
+
+        <div class="results">
+            <h2 class="text-2xl font-semibold mb-4">Suggested Titles:</h2>
+            <div id="titleList" class="space-y-4">
+                <!-- Titles will be dynamically loaded here after successful purchase -->
+                <p class="text-gray-500">Click "Generate Titles" to see powerful suggestions. Pay once, use forever!</p>
+            </div>
+        </div>
+
+        <div class="text-center mt-10">
+            <a href="#" class="price-button">Buy Now for $9.99</a>
+            <p class="text-sm text-gray-500 mt-2">One-time purchase for unlimited title generations.</p>
+        </div>
+    </div>
+</body>
+</html>
