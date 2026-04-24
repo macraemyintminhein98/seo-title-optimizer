@@ -4,44 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEO Title Optimizer</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
     <style>
-        body { font-family: sans-serif; }
-        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-        .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; margin-bottom: 5px; font-weight: bold; }
-        .input-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
-        .button { background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; }
-        .button:hover { background-color: #45a049; }
-        .results { margin-top: 30px; }
-        .title-item { background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin-bottom: 10px; }
-        .price-button { background-color: #007bff; color: white; padding: 12px 20px; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 20px; }
-        .price-button:hover { background-color: #0056b3; }
+        [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-gray-100">
-    <div class="container bg-white shadow-lg rounded-lg mt-10 p-8">
-        <h1 class="text-4xl font-bold text-center mb-6">SEO Title Optimizer</h1>
-        <p class="text-center text-gray-600 mb-8">Generate catchy, SEO-friendly titles for your content instantly.</p>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl" x-data="{ articleTitle: '', keyword: '', variations: [], loading: false, error: '' }">
+        <h1 class="text-3xl font-bold mb-6 text-center">SEO Title Optimizer</h1>
+        <p class="text-gray-600 mb-6 text-center">Generate SEO-friendly title variations instantly!</p>
 
-        <div class="input-group">
-            <label for="keyword">Enter your main keyword:</label>
-            <input type="text" id="keyword" placeholder="e.g., 'best coffee makers 2024'" class="focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <div class="mb-4">
+            <label for="articleTitle" class="block text-gray-700 text-sm font-bold mb-2">Article Title Idea:</label>
+            <input type="text" id="articleTitle" x-model="articleTitle" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="e.g., How to Write Great Blog Posts">
         </div>
 
-        <button id="generateButton" class="button w-full mb-8 hover:shadow-md transition-all duration-300">Generate Titles</button>
-
-        <div class="results">
-            <h2 class="text-2xl font-semibold mb-4">Suggested Titles:</h2>
-            <div id="titleList" class="space-y-4">
-                <!-- Titles will be dynamically loaded here after successful purchase -->
-                <p class="text-gray-500">Click "Generate Titles" to see powerful suggestions. Pay once, use forever!</p>
-            </div>
+        <div class="mb-6">
+            <label for="keyword" class="block text-gray-700 text-sm font-bold mb-2">Primary Keyword:</label>
+            <input type="text" id="keyword" x-model="keyword" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="e.g., blog posts">
         </div>
 
-        <div class="text-center mt-10">
-            <a href="#" class="price-button">Buy Now for $9.99</a>
-            <p class="text-sm text-gray-500 mt-2">One-time purchase for unlimited title generations.</p>
+        <button @click="console.log('Stripe checkout for ' + '{{ product_name }}' + ' starting.')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full focus:outline-none focus:shadow-outline mb-4">Unlock Title Variations (One-time purchase)</button>
+
+        <div x-show="loading" class="text-center text-blue-500 mt-4">Generating variations...</div>
+        <div x-show="error" class="text-center text-red-500 mt-4" x-text="error"></div>
+
+        <div x-show="variations.length > 0" x-cloak class="mt-8 border-t pt-6">
+            <h2 class="text-2xl font-semibold mb-4">Generated Titles:</h2>
+            <ul class="space-y-4">
+                <template x-for="(variation, index) in variations" :key="index">
+                    <li class="bg-gray-50 p-4 rounded-md shadow-sm">
+                        <p class="font-medium text-lg" x-text="variation.title"></p>
+                        <p class="text-sm text-gray-600">Chars: <span x-text="variation.chars"></span> | Score: <span x-text="variation.score"></span></p>
+                    </li>
+                </template>
+            </ul>
         </div>
     </div>
 </body>
