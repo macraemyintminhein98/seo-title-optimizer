@@ -1,3 +1,3 @@
 # SEO Title Optimizer
 
-**Turn keywords into clicks.** This micro-SaaS helps small business owners, bloggers, and content creators generate compelling, SEO-friendly titles using AI. Input a keyword, get 5-10 optimized title suggestions instantly. Improve your search engine rankings and attract more visitors to your content with a simple one-time purchase.
+Instantly generate SEO-friendly title variations for your articles and content. Input your article title and primary keyword, and get 5-10 optimized options complete with character counts and clickbait scores. Perfect for bloggers, content creators, and SEO professionals looking for quick ideation.
