@@ -1,3 +1,3 @@
 # SEO Title Optimizer
 
-Instantly generate SEO-friendly title variations for your articles and content. Input your article title and primary keyword, and get 5-10 optimized options complete with character counts and clickbait scores. Perfect for bloggers, content creators, and SEO professionals looking for quick ideation.
+A simple web tool to generate optimized and catchy SEO titles and meta descriptions based on your keywords. Attract more clicks and improve your online visibility effortlessly. Ideal for bloggers, small business owners, and content creators looking for quick SEO wins.
