@@ -4,43 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEO Title Optimizer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-    <style>
-        [x-cloak] { display: none !important; }
-    </style>
+    <meta name="description" content="Generate optimized, catchy SEO titles and meta descriptions instantly.">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%233B82F6' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E" type="image/svg+xml">
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl" x-data="{ articleTitle: '', keyword: '', variations: [], loading: false, error: '' }">
-        <h1 class="text-3xl font-bold mb-6 text-center">SEO Title Optimizer</h1>
-        <p class="text-gray-600 mb-6 text-center">Generate SEO-friendly title variations instantly!</p>
-
-        <div class="mb-4">
-            <label for="articleTitle" class="block text-gray-700 text-sm font-bold mb-2">Article Title Idea:</label>
-            <input type="text" id="articleTitle" x-model="articleTitle" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="e.g., How to Write Great Blog Posts">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">SEO Title Optimizer</h1>
+        <p class="text-gray-600 mb-6">Craft click-worthy titles & descriptions in seconds.</p>
+        <input type="text" id="keywordsInput" class="w-full p-3 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter keywords (e.g., 'vegan recipes', 'fast cars')">
+        <button id="optimizeBtn" class="bg-blue-600 text-white px-5 py-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 text-lg font-semibold">Optimize Now</button>
+        <div id="results" class="mt-6 text-left hidden">
+            <h2 class="text-xl font-semibold mb-2">Suggestions:</h2>
+            <div id="titleSuggestions" class="bg-gray-50 p-4 rounded mb-4"></div>
+            <div id="descriptionSuggestions" class="bg-gray-50 p-4 rounded"></div>
         </div>
-
-        <div class="mb-6">
-            <label for="keyword" class="block text-gray-700 text-sm font-bold mb-2">Primary Keyword:</label>
-            <input type="text" id="keyword" x-model="keyword" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="e.g., blog posts">
-        </div>
-
-        <button @click="console.log('Stripe checkout for ' + '{{ product_name }}' + ' starting.')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full focus:outline-none focus:shadow-outline mb-4">Unlock Title Variations (One-time purchase)</button>
-
-        <div x-show="loading" class="text-center text-blue-500 mt-4">Generating variations...</div>
-        <div x-show="error" class="text-center text-red-500 mt-4" x-text="error"></div>
-
-        <div x-show="variations.length > 0" x-cloak class="mt-8 border-t pt-6">
-            <h2 class="text-2xl font-semibold mb-4">Generated Titles:</h2>
-            <ul class="space-y-4">
-                <template x-for="(variation, index) in variations" :key="index">
-                    <li class="bg-gray-50 p-4 rounded-md shadow-sm">
-                        <p class="font-medium text-lg" x-text="variation.title"></p>
-                        <p class="text-sm text-gray-600">Chars: <span x-text="variation.chars"></span> | Score: <span x-text="variation.score"></span></p>
-                    </li>
-                </template>
-            </ul>
+        <div class="mt-8 text-gray-500 text-sm">
+            One-time purchase for unlimited optimizations.
         </div>
     </div>
+    <script>
+        document.getElementById('optimizeBtn').addEventListener('click', async () => {
+            const keywords = document.getElementById('keywordsInput').value;
+            if (!keywords) {
+                alert('Please enter some keywords!');
+                return;
+            }
+            // Simulate API call for title/description generation
+            document.getElementById('optimizeBtn').textContent = 'Optimizing...';
+            document.getElementById('optimizeBtn').disabled = true;
+            document.getElementById('results').classList.add('hidden');
+
+            await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate loading
+
+            const titles = [
+                `Top 10 ${keywords} You Need to Try Today`,
+                `${keywords}: The Ultimate Guide for Beginners`,
+                `Mastering ${keywords}: Tips & Tricks for Success`
+            ];
+            const descriptions = [
+                `Discover the best ${keywords} with our comprehensive guide. Get actionable tips and improve your skills now!`,
+                `Unlock the secrets of ${keywords} and boost your rankings. Find out how to get more clicks today!`,
+                `From beginner to expert: our ${keywords} strategies will transform your online presence. Read more!`
+            ];
+
+            document.getElementById('titleSuggestions').innerHTML = '<h3 class="font-medium">Titles:</h3>' + titles.map(t => `<p class="mt-2 p-2 bg-white rounded border border-gray-200">${t}</p>`).join('');
+            document.getElementById('descriptionSuggestions').innerHTML = '<h3 class="font-medium">Descriptions:</h3>' + descriptions.map(d => `<p class="mt-2 p-2 bg-white rounded border border-gray-200">${d}</p>`).join('');
+            document.getElementById('results').classList.remove('hidden');
+
+            // In a real app, integrate Stripe checkout here after a successful generation or on a separate purchase button click.
+            // For this example, we just show results.
+            document.getElementById('optimizeBtn').textContent = 'Optimize Now';
+            document.getElementById('optimizeBtn').disabled = false;
+        });
+    </script>
 </body>
 </html>
